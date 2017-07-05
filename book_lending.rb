@@ -23,6 +23,14 @@ class Book
   end
 
 def return_to_library
+  if lent_out? == true
+    @@on_loan.delete(self)
+    @@on_shelf << self
+    @due_date = nil
+     return true
+   else
+     return false
+   end
 end
 
 def lent_out?
@@ -62,7 +70,7 @@ def self.available
 end
 
 def self.borrowed
-  return @@on_loan
+  return @@on_loan.sample
 end
 
 end
