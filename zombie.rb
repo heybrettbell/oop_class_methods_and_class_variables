@@ -18,12 +18,12 @@ class Zombie
     end
   end
 
-  def encounter
-    if outrun_zombie? == true  # <--- returning error
+  def encounter # <--- returning error
+    if outrun_zombie? == true
       puts "You outran a zombie!"
     else
       if survive_attack? == true
-        @@horde << Zombie.new(@@default_speed, @@default_strength)
+        @@horde << Zombie.new(rand(0..@@default_speed), rand(0..@@default_strength))
         puts "Sorry..you are now a zombie!"
       else
         puts "You died.  Sad!"
@@ -33,9 +33,10 @@ class Zombie
 
   def outrun_zombie?
     how_fast = rand(0..@@max_speed)
-    if how_fast > Zombie.default_speed
+    p Zombie.speed
+    if how_fast > Zombie.speed
      true
-   elsif how_fast <= Zombie.default_speed
+   elsif how_fast <= Zombie.speed
      false
    end
   end
